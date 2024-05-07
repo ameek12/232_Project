@@ -1,2 +1,2 @@
 # Big Data with Spark Project
- This project focuses on...
+This project will explore the features of air pollution from sensors with data provided by OpenAQ, a nonprofit organization providing access to air quality data. We will employ supervised and unsupervised learning techniques. We will also use regression models to predict the type of pollutants from given features. Finally, we will apply clustering algorithms to cluster locations with similar pollution levels.
