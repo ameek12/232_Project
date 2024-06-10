@@ -1,3 +1,4 @@
 pandas
 numpy
-geopy
+python-aqi
+reverse_geocoder
