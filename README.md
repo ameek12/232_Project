@@ -54,7 +54,7 @@ df.show()
 df.count() # Output: 26541241
 ```
 
-## 3. Preprocessing
+## Preprocessing
 To ensure data quality, several preprocessing steps were undertaken. These steps included transforming the datatime column, checking for null values, and filtering out invalid entries (due to malfunction of the sensors). The main goal of this section was to make sure the data was clean and reliable for subsequent analysis and potential modeling.
 · Datetime column was split into date and time for better understanding:
 
@@ -110,6 +110,16 @@ https://github.com/ameek12/232_Project/blob/main/milestone4.ipynb
 
 
 # Results Section 
+## Model 1
+The elbow method and silhouette analysis were conducted prior to K-means clustering to determine what the best hyperparameter value for the number of clusters would be. Listed below are the figures for that. 
+
+The elbow method has a clear prominent elbow at k = 5 with the values plateuing at higher values of k. This demonstrates to us  that 5 is a good number of clusters to work with. 
+
+The silhouette analysis results show that the silhouette score drops down to 0.85 when k is 3, but at k is 5 the silhouette score increases to about 0.9. The silhouette score will remain around 0.9 or drop lower for higher values of k. This further demonstrates that k = 5 is a good number of clusters to work with. 
+
+The results of the K-means clustering with a value of 5 clusters show that there is one large cluster containing 327,305 locations, and four significantly smaller clusters with 28, 7836, 6764, and 2636 locations.
+
+To evaluate the clustering of our model, we calculated the Within Set Sum of Squared Errors (WSSSE) to be 99,674,957.
 
 # Discussion Section
 In this project, a lot of time was spent employing various data preprocessing techniques to enhance the accuracy and efficiency of our analysis. Initially, we saved data to a pickle file to avoid the repetitive and time-consuming task of processing OpenAQ gzip files. However, this method proved inadequate due to its slow performance and the realization that many US locations were missing from our dataset. This led us to query OpenAQ's API directly to compile a comprehensive list of US locations with reference-grade sensors. Downloading the missing data and converting it to Parquet files significantly sped up our data pipeline, enabling more efficient querying and exploration.
