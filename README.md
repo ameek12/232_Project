@@ -131,12 +131,15 @@ For future work, validating sensor quality is crucial to improve analysis accura
 Each team member was an integral part of this project. 
 
 Name: Ann Meek and Luisa Jaime
+
 Ann Meek completed the abstract and part of the preprocessing and data exploration sections with Luisa Jaime. For preprocessing, Ann created a DataFrame with a specified schema from the CSV files. This DataFrame was converted to an RDD and pickled so that it could be used later once the notebook was re-opened, avoiding the need to recreate the DataFrame. This method worked well for the second milestone but ended up taking more time during milestone 3. Consequently, Ryan Thomson upgraded this to use Parquet files for better efficiency. Ann removed the preliminary null values and values pertaining to pollutants that were less than or equal to zero. 
 
 Ann and Luisa also visualized specific sensors over time at particular locations. Luisa specifically analyzed statistics of the numerical values, that ensured the robustness of the data. She also  implemented a  label encoding on  the categorical variables for machine learning purposes. Additionally, Luisa created an interactive plot of the US, displaying sensor, parameter, and location data.
 
 Name: Shane Lin and Ryan Thomson
+
 Contribution: Shane Lin and Ryan Thomson worked together to code the first model (K-means clustering). Shane wrote code to pivot the data to split by parameter. Shane also wrote code to add an additional column to the dataframe that calculated the AQI score based on the parameter values and also another column that showed the category of AQI reading based on the calculated AQI score. Shane conducted the silhouette analysis and elbow method as hyperparameters to determine the best number of clusters to split the data into. Shane wrote the code for the K-means-clustering model and wrote the conclusion based on the results of the analysis. Shane also helped complete the writeup. 
 
 Name: Chris Merry
+
 Initial attempts to download files from the AWS bucket were failing in Expanse, so Chris attempted to use rclone as a means of syncing folders, rather than restarting the copy process each time it failed.  While this proved better than the standard AWS cli method, Ryan further improved data access by using the openAQ API.  Chris later worked on Time Series analysis, which utilized previous preprocessing work from earlier milestones; however, it required a refined pivoting of the data to group and calculate daily mean values for pollutants.  The Prophet library was used to perform the analysis and forecasting.
