@@ -10,6 +10,7 @@ With the provided parameters given for each sensor location (o2, co2, co, humidi
 # Methods
  This section details the exploration results, preprocessing steps, and models chosen in the ordered they were executed. Each step is subdivided for clarity, the methodology was chosen to comprehensively understand and analyze the air pollution data in the United States and processing large-scale environmental data. Ensuring data integrity and extracting meaningful insights. This allowed us for robust data cleaning, transformation and analysis, facilitating informed decision-making based on the findings.
 ## Data Exploration
+https://github.com/ameek12/232_Project/blob/main/AirPollutionProject.ipynb
 ### 1. Creating a DataFrame from CSV files on the cloud
 
 
@@ -80,6 +81,8 @@ Since we were working with multiple columns, we realized we had some categorical
 This concluded our method section for the second Milestone, detailing the exploration, preprocessing, and analysis steps taken during this section. These methodologies were chosen to ensure comprehensive and accurate analysis of air pollution.
 
 ## Model 1: K-means Clustering
+https://github.com/ameek12/232_Project/blob/main/AirPollutionProject.ipynb
+
 We wrote code to query OpenAQ's API to get a list of all US locations with reference-grade sensors. Using this information, we downloaded the missing locations from AWS. Then to speed up future data loading and processing, we converted the OpenAQ S3 data to Parquet files. This process significantly speed up the data pipeline, enabling us to query and explore the data much quicker.
 
 Next, realized that some locations in our dataset had longitude and latitude values that were equal to each other, so we removed those locations from our data.
@@ -102,7 +105,10 @@ We then used the Elbow Method to plot the number of clusters, K, versus the with
 
 We next performed a Silhouette Analysis, measuring the similarity of objects in their own clusters compared to other clusters. Higher scores mean the points are matched well to their own cluster.
 
-## Model 2
+## Model 2 Time Series Analysis
+https://github.com/ameek12/232_Project/blob/main/milestone4.ipynb
+
+
 # Results Section 
 
 # Discussion Section
