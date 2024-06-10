@@ -1,4 +1,4 @@
-# Introduction to your project:
+# Introduction to your project
 
 For this project, our group worked with features of air pollution from sensors located all around the world provided by OpenAQ, a nonprofit organization providing access to air quality data. This dataset not only provided us with abundant timestamped data from different geographical regions all around the world, but also provided current and relevant information regarding the environment which we found very interesting to research further into. As we as a society become more aware and conscious about how we are affecting our environment, air quality and pollution data such as from this dataset become increasingly significant to look into as it can provide important insight. 
 
@@ -133,8 +133,13 @@ We demonstrated the application of K-Means clustering to group air pollution dat
 In addition to clustering, we employed Time Series analysis to forecast levels of six pollutants (PM2.5, PM10, NO2, SO2, CO, and O3) based on historical data. We pivoted the historical air quality data across US cities, calculating the mean pollutant values per day for each city. This created a time series dataset with daily averages for each pollutant. After exploring different Time Series forecasting models, including ARIMA (AutoRegressive Integrated Moving Average), SARIMA (Seasonal ARIMA), and Prophet. We ultimately chose Prophet.  We then generated forecasts for future pollutant levels. This provided insights into expected air quality trends, enabling us to predict potential pollution events and assess long-term air quality changes.
 For future work, validating sensor quality is crucial to improve analysis accuracy. Inconsistencies such as unrealistic sensor readings and missing data underscore the need for better sensor calibration and data verification.
 
-## Statement of Collaboration:
-Each team member was an integral part of this project. 
+# Statement of Collaboration
+
+Overall our group worked very well together. Early on we decided to use a divide-and-conquer approach where subgroups took the lead for individual milestones. These contributions are listed below.
+
+Despite this division of labor, throughout the project we had regular video calls to discuss where we were at, and what needed to be done, and we communicated frequently on Slack in a channel dedicated to the project.
+
+Additionally, we all initially looked at various data sets and decided upon the OpenAQ pollution data as a group, and all helped with the final write-up. 
 
 ### Name: Ann Meek and Luisa Jaime
 
