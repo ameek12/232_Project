@@ -107,7 +107,14 @@ We next performed a Silhouette Analysis, measuring the similarity of objects in 
 
 ## Model 2 Time Series Analysis
 https://github.com/ameek12/232_Project/blob/main/milestone4.ipynb
+### Data Exploration and Preprocessing
+We conducted a time series analysis using Prophet. Building on the solid foundation established in previous milestones, where data was standardized and cleansed, we refined earlier attempts at pivoting the data. This involved grouping rows by US city and state and calculating the daily mean values for six pollutants (NO2, O3, PM10, PM2.5, SO2, and CO). This preprocessing step ensured the data was correctly formatted for modeling with Prophet.
 
+### Model Training
+The preprocessed data was then divided into training and test sets to objectively evaluate the model's performance. The training data was used to fit the Prophet model. Prophet's strengths lie in its ability to handle various seasonality patterns and incorporate holidays, which often significantly impact time series data. For each pollutant, we calculated the monthly mean, which was crucial for the subsequent analysis.
+
+### Analysis and Visualization
+We created several plots to investigate the model's effectiveness. Initially, we examined a single pollutant by comparing historical values to the predicted forecast values. Subsequently, we analyzed different types of pollutants to observe their variations. To provide a clearer picture of the model results, we aggregated pollutant types across all cities to calculate an overall monthly mean. These values were used to forecast 30 months into the future. The forecasts appeared consistent with historical values, and we incorporated confidence intervals into the plots to further assess accuracy. Throughout this process, we critically evaluated the results at each step, acknowledging the model's limitations and potential shortcomings. Continuous evaluation and refinement are necessary to maintain accuracy in the face of new data and changing conditions.
 
 # Results Section 
 ## Model 1
