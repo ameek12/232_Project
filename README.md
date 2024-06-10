@@ -9,8 +9,10 @@ With the provided parameters given for each sensor location (o2, co2, co, humidi
 
 # Methods
  This section details the exploration results, preprocessing steps, and models chosen in the ordered they were executed. Each step is subdivided for clarity, the methodology was chosen to comprehensively understand and analyze the air pollution data in the United States and processing large-scale environmental data. Ensuring data integrity and extracting meaningful insights. This allowed us for robust data cleaning, transformation and analysis, facilitating informed decision-making based on the findings.
+
 ## Data Exploration
 https://github.com/ameek12/232_Project/blob/main/AirPollutionProject.ipynb
+
 ### 1. Creating a DataFrame from CSV files on the cloud
 
 
@@ -160,15 +162,20 @@ Additionally, we all initially looked at various data sets and decided upon the 
 
 ### Name: Ann Meek and Luisa Jaime
 
-Contributions: Ann Meek completed the abstract and part of the preprocessing and data exploration sections with Luisa Jaime. For preprocessing, Ann created a DataFrame with a specified schema from the CSV files. This DataFrame was converted to an RDD and pickled so that it could be used later once the notebook was re-opened, avoiding the need to recreate the DataFrame. This method worked well for the second milestone but ended up taking more time during milestone 3. Consequently, Ryan Thomson upgraded this to use Parquet files for better efficiency. Ann removed the preliminary null values and values pertaining to pollutants that were less than or equal to zero. 
+__Contributions:__ Ann Meek completed the abstract and part of the preprocessing and data exploration sections with Luisa Jaime. For preprocessing, Ann created a DataFrame with a specified schema from the CSV files. This DataFrame was converted to an RDD and pickled so that it could be used later once the notebook was re-opened, avoiding the need to recreate the DataFrame. This method worked well for the second milestone but ended up taking more time during milestone 3. Consequently, Ryan Thomson upgraded this to use Parquet files for better efficiency. Ann removed the preliminary null values and values pertaining to pollutants that were less than or equal to zero. 
 
 Ann and Luisa also visualized specific sensors over time at particular locations. Luisa specifically analyzed statistics of the numerical values, that ensured the robustness of the data. She also  implemented a  label encoding on  the categorical variables for machine learning purposes. Additionally, Luisa created an interactive plot of the US, displaying sensor, parameter, and location data.
 
-### Name: Shane Lin and Ryan Thomson
+### Name: Shane Lin
 
-Contributions: Shane Lin and Ryan Thomson worked together to code the first model (K-means clustering). Shane wrote code to pivot the data to split by parameter. Shane also wrote code to add an additional column to the dataframe that calculated the AQI score based on the parameter values and also another column that showed the category of AQI reading based on the calculated AQI score. Shane conducted the silhouette analysis and elbow method as hyperparameters to determine the best number of clusters to split the data into. Shane wrote the code for the K-means-clustering model and wrote the conclusion based on the results of the analysis. Shane also helped complete the writeup.
+__Contribution:__ Shane Lin and Ryan Thomson worked together to code the first model (K-means clustering). Shane wrote code to pivot the data to split by parameter. He also wrote code to add an additional column to the dataframe that calculated the AQI score based on the parameter values and also another column that showed the category of AQI reading based on the calculated AQI score.
 
-As part of the third milestone, Ryan refactored the data pipeline to help with two issues. One was that there was missing data, and two was that working with the data was slow. He added code to pull all the desired locations from the OpenAQ API, and then downloaded these files from AWS. To improve perfomance, he converted the data to Parquet files. By doing this, performance increased substantially.
+Shane conducted the silhouette analysis and elbow method as hyperparameters to determine the best number of clusters to split the data into. He wrote the code for the K-means-clustering model and wrote the conclusion based on the results of the analysis. Shane also helped complete the writeup.
+
+
+ ### Name: Ryan Thomson
+
+__Contribution:__ As part of the third milestone, Ryan refactored the data pipeline to help with two issues. One was that there was missing data, and two was that working with the data was slow. He added code to pull all the desired locations from the OpenAQ API, and then downloaded these files from AWS. To improve perfomance, he converted the data to Parquet files. By doing this, performance increased substantially.
 
 Ryan also wrote additional data processing code to convert units, drop unneeded columns, and calculate Daily Averages. Our data had longitude and latitude, but no other geographical information. Ryan used a reverse geocoding library to add City and State columns.
 
@@ -176,4 +183,4 @@ He, along with Shane, explored an initial linear regression model, but after som
 
 ### Name: Chris Merry
 
-Contribution: Initial attempts to download files from the AWS bucket were failing in Expanse, so Chris attempted to use rclone as a means of syncing folders, rather than restarting the copy process each time it failed.  While this proved better than the standard AWS cli method, Ryan further improved data access by using the openAQ API.  Chris later worked on Time Series analysis, which utilized previous preprocessing work from earlier milestones; however, it required a refined pivoting of the data to group and calculate daily mean values for pollutants.  The Prophet library was used to perform the analysis and forecasting.
+__Contribution:__ Initial attempts to download files from the AWS bucket were failing in Expanse, so Chris attempted to use rclone as a means of syncing folders, rather than restarting the copy process each time it failed.  While this proved better than the standard AWS cli method, Ryan further improved data access by using the openAQ API.  Chris later worked on Time Series analysis, which utilized previous preprocessing work from earlier milestones; however, it required a refined pivoting of the data to group and calculate daily mean values for pollutants.  The Prophet library was used to perform the analysis and forecasting.
