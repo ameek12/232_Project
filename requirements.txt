@@ -2,3 +2,5 @@ pandas
 numpy
 python-aqi
 reverse_geocoder
+pystan==2.19.1.1
+prophet
