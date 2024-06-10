@@ -1,12 +1,15 @@
 # Introduction to your project:
 
-This project will explore the features of air pollution from sensors with data provided by OpenAQ, a nonprofit organization providing access to air quality data. We will employ supervised and unsupervised learning techniques. We will also use regression models to predict the type of pollutants from given features. Finally, we will apply clustering algorithms to cluster locations with similar pollution levels.
+For this project, our group worked with features of air pollution from sensors located all around the world provided by OpenAQ, a nonprofit organization providing access to air quality data. This dataset not only provided us with abundant timestamped data from different geographical regions all around the world, but also provided current and relevant information regarding the environment which we found very interesting to research further into. As we as a society become more aware and conscious about how we are affecting our environment, air quality and pollution data such as from this dataset become increasingly significant to look into as it can provide important insight. 
+
+With the provided parameters given for each sensor location (o2, co2, co, humidity, pm1, pm25, pm10, pressure, etc.) along with the longitude and latitude of each sensor, there are several parameters at our disposal to create models for. For our first model, we decided to create a k-means clustering unsupervised model on the sensors located within the US. This provided us with a high level view to investigate how the air pollution data in cities across the US compared to each other and how we could group cities with similar pollution profiles. This clustering data also gave us insight into how many natural groups are formed from the wide variety of environmental data in our US dataset. Our second model looked into time series forecasting when trained on past time stamped data of our parameters. This gives us insight on our ability to predict future events from past data and the accuracy of our predictions from these models. 
+
 
 # Figures
 
 # Methods
  This section details the exploration results, preprocessing steps, and models chosen in the ordered they were executed. Each step is subdivided for clarity, the methodology was chosen to comprehensively understand and analyze the air pollution data in the United States and processing large-scale environmental data. Ensuring data integrity and extracting meaningful insights. This allowed us for robust data cleaning, transformation and analysis, facilitating informed decision-making based on the findings.
-Data Exploration
+## Data Exploration
 ### 1. Creating a DataFrame from CSV files on the cloud
 
 
@@ -50,7 +53,7 @@ df.show()
 df.count() # Output: 26541241
 ```
 
-### 3. Preprocessing
+## 3. Preprocessing
 To ensure data quality, several preprocessing steps were undertaken. These steps included transforming the datatime column, checking for null values, and filtering out invalid entries (due to malfunction of the sensors). The main goal of this section was to make sure the data was clean and reliable for subsequent analysis and potential modeling.
 · Datetime column was split into date and time for better understanding:
 
@@ -65,15 +68,41 @@ from pyspark.sql.functions import isnan, when, count, col df.select(*(count(when
 ```
 import pyspark.sql.functions as func df = df.filter(col("value") > 0) df.show() # Save the cleaned DataFramedf.rdd.saveAsPickleFile("df_pkl_parsed")
 ```
-### 4. M1: Data Analysis with PySpark SQL
+Data Analysis with PySpark SQL
 Using PySpark SQL allowed for efficient querying and analysis of the large dataset. This was chosen for its scalability and ability to handle complex queries on big data.
 We started by creating a temporary table and preformed several SQL queries to explore the data, such as counting distinct parameters and examining sensor counts.  We were also able to identify entries exceeding certain pollution thresholds reported to be harmful for humans.
-### 5. M2: Graphical Anlaysis
+
+Graphical Anlaysis
 Graphing our analysis was crucial, this was conducted to visualize trends and patterns in the air pollution data. Visualization helped us understand the temporal and spatial distribution of the pollution levels.
-### 6. Additional Analysis: Handling Categorical Data
+
+Additional Analysis: Handling Categorical Data
 Since we were working with multiple columns, we realized we had some categorical variables. We opted to convert this data into numerical ones using label encoding. This with the goal of preparing the data for future machine learning models. We were also able to summarize the distribution of numerical columns providing insights into data characteristics. We then calculated the skewness and kurtosis for these numerical variables, with the goal to understand the shape and characteristics of the data distribution.
 This concluded our method section for the second Milestone, detailing the exploration, preprocessing, and analysis steps taken during this section. These methodologies were chosen to ensure comprehensive and accurate analysis of air pollution.
 
+## Model 1: K-means Clustering
+We wrote code to query OpenAQ's API to get a list of all US locations with reference-grade sensors. Using this information, we downloaded the missing locations from AWS. Then to speed up future data loading and processing, we converted the OpenAQ S3 data to Parquet files. This process significantly speed up the data pipeline, enabling us to query and explore the data much quicker.
+
+Next, realized that some locations in our dataset had longitude and latitude values that were equal to each other, so we removed those locations from our data.
+
+We further pre-processed our data by converting our pollutant values to standardized units, as initially the data had inconsistent units, such as Celcius versus Fahrenheit.
+
+Then we calculated daily averages for all parameters, and then pivoted the data to split up the parameters into their own columns.
+
+The data had longitude and latitude values, but no other geographical information. Knowing we wanted to explore models that would benefit from categorical geographical location, we reverse geocoded the coordinates to get City, State, and Country locations.
+
+Despite directly querying OpenAQ's API for a list of US locations, and downloading only those locations, looking at our new geopraphical information, we could see that the data still contained locations outside the US. So these locations were filtered out.
+
+AQI (Air Quality Index) is a standardized score metric that is used to categorize the quality of air. We utilized a python AQI library that can convert between pollutant values and an AQI score, which can be found here: https://pypi.org/project/python-aqi/. Using the AQI library we were able to calculate a AQI score for each time point of data, and then using standardized thresholds for AQI scores, we categorized each AQI value by "good", "moderate", "unhealthy", etc. These thresholds for AQI can be found here: https://www.epa.gov/outdoor-air-quality-data/air-data-basic-information.
+
+Finally we were able to look at out first model, for which we chose K-Means Clustering. Using this unsupervised model, our goal was to cluster the US air pollution data into clusters to investigate places that had similar pollution data.
+
+First, we had to deal with the nulls in our dataset that were created when we averaged our data by day. We chose to replace the nulls with the average of the column.
+
+We then used the Elbow Method to plot the number of clusters, K, versus the within-cluster sum of squares, WSS, which measures the cluter compactness.
+
+We next performed a Silhouette Analysis, measuring the similarity of objects in their own clusters compared to other clusters. Higher scores mean the points are matched well to their own cluster.
+
+## Model 2
 # Results Section 
 
 # Discussion Section
@@ -89,3 +118,4 @@ Each team member was an integral part of this project. Ann Meek completed the ab
 
 Ann and Luisa also visualized specific sensors over time at particular locations. Luisa specifically analyzed statistics of the numerical values, that ensured the robustness of the data. She also  implemented a  label encoding on  the categorical variables for machine learning purposes. Additionally, Luisa created an interactive plot of the US, displaying sensor, parameter, and location data.
 
+Shane Lin and Ryan Thomson worked together to code the first model (K-means clustering). Shane wrote code to pivot the data to split by parameter. Shane also wrote code to add an additional column to the dataframe that calculated the AQI score based on the parameter values and also another column that showed the category of AQI reading based on the calculated AQI score. Shane conducted the silhouette analysis and elbow method as hyperparameters to determine the best number of clusters to split the data into. Shane wrote the code for the K-means-clustering model and wrote the conclusion based on the results of the analysis. Shane also helped complete the writeup. 
