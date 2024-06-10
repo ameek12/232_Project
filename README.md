@@ -131,6 +131,10 @@ The results of the K-means clustering with a value of 5 clusters show that there
 
 To evaluate the clustering of our model, we calculated the Within Set Sum of Squared Errors (WSSSE) to be 99,674,957.
 
+## Model 2 
+<p>With data pivoted, the first step involved analizing the underlying data this is essential to time series analysis.  A sliding window was used to compare daily mean values to a 30 day average in order to check for unusual or abnormal values.</p> 
+<p>Next several plots were created to look at various aspects of pollutants, comparing the historical values to forecasted series.  With so many cities plotted together, it was difficult to see how well the forecast compared.  Therefore, we decided to look at the overall monthly mean of all cities, and create a forecast to verify model accuracy.  This method showed the model followed the historical values well, and it did well in providing consistent forecasted values.  To further ensure accuracy of the model, a confidence interval was plotted along with the forecasted line.  This showed some pollutants were more accurate than others.</p>
+
 # Discussion Section
 In this project, a lot of time was spent employing various data preprocessing techniques to enhance the accuracy and efficiency of our analysis. Initially, we saved data to a pickle file to avoid the repetitive and time-consuming task of processing OpenAQ gzip files. However, this method proved inadequate due to its slow performance and the realization that many US locations were missing from our dataset. This led us to query OpenAQ's API directly to compile a comprehensive list of US locations with reference-grade sensors. Downloading the missing data and converting it to Parquet files significantly sped up our data pipeline, enabling more efficient querying and exploration.
 
