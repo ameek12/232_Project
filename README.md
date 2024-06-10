@@ -6,6 +6,7 @@ With the provided parameters given for each sensor location (o2, co2, co, humidi
 
 
 # Figures
+For all figures please refer to: ```https://github.com/ameek12/232_Project/tree/main/figures```
 
 # Methods
  This section details the exploration results, preprocessing steps, and models chosen in the ordered they were executed. Each step is subdivided for clarity, the methodology was chosen to comprehensively understand and analyze the air pollution data in the United States and processing large-scale environmental data. Ensuring data integrity and extracting meaningful insights. This allowed us for robust data cleaning, transformation and analysis, facilitating informed decision-making based on the findings.
@@ -108,7 +109,7 @@ We then used the Elbow Method to plot the number of clusters, K, versus the with
 We next performed a Silhouette Analysis, measuring the similarity of objects in their own clusters compared to other clusters. Higher scores mean the points are matched well to their own cluster.
 
 ## Model 2 Time Series Analysis
-https://github.com/ameek12/232_Project/blob/main/milestone4.ipynb
+```https://github.com/ameek12/232_Project/blob/main/milestone4.ipynb```
 ### Data Exploration and Preprocessing
 We conducted a time series analysis using Prophet. Building on the solid foundation established in previous milestones, where data was standardized and cleansed, we refined earlier attempts at pivoting the data. This involved grouping rows by US city and state and calculating the daily mean values for six pollutants (NO2, O3, PM10, PM2.5, SO2, and CO). This preprocessing step ensured the data was correctly formatted for modeling with Prophet.
 
